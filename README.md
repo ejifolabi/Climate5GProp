@@ -18,7 +18,7 @@ cd Climate5GProp
 matlab main.m
 ```
 
-**Pro License $199** → [Buy Now](buy.html)
+**Pro License $199** → [Buy Now](https://ejifolabi.github.io/Climate5GProp/)
 
 ## 📊 Results
 | Metric | Baseline | Pro Adaptive |
