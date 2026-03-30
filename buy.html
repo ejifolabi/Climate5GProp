@@ -1,33 +1,87 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Buy Climate5GProp Pro - $199</title>
-    <script src="https://js.stripe.com/v3/"></script>
-    <style>body{font-family:Arial; max-width:600px; margin:50px auto;}</style>
+    <title>🚀 Buy Climate5GProp Pro - ₦300,000 / $199</title>
+    <script src="https://checkout.flutterwave.com/v3.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            max-width: 500px; margin: 0 auto; padding: 40px 20px; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh; color: white;
+        }
+        .card { 
+            background: white; color: #333; border-radius: 20px; 
+            padding: 40px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .logo { font-size: 2.5em; color: #28a745; text-align: center; margin-bottom: 20px; }
+        .price { font-size: 3em; font-weight: 700; color: #28a745; text-align: center; }
+        .features { list-style: none; padding: 20px 0; }
+        .features li { padding: 10px 0; font-size: 1.1em; }
+        .features li:before { content: "✅"; margin-right: 10px; }
+        button { 
+            width: 100%; background: linear-gradient(45deg, #28a745, #20c997); 
+            color: white; border: none; padding: 20px; 
+            border-radius: 15px; font-size: 1.3em; font-weight: 600;
+            cursor: pointer; transition: transform 0.2s;
+        }
+        button:hover { transform: translateY(-2px); }
+        .email { width: 100%; padding: 15px; border-radius: 10px; border: 1px solid #ddd; margin: 20px 0; font-size: 1.1em; }
+    </style>
 </head>
 <body>
-    <h1>🚀 Climate5GProp Pro License</h1>
-    <p><strong>$199</strong> - Unlimited sites + API + Support</p>
-    <ul>
-        <li>Live NOAA forecasts</li>
-        <li>RCP8.5 climate grids</li>
-        <li>Batch 1000+ towers</li>
-        <li>Web dashboard</li>
-    </ul>
-    <form id="checkout">
-        <button id="buy-btn">Purchase → Instant License</button>
-    </form>
-    
+    <div class="card">
+        <div class="logo">🌪️ Climate5GProp Pro</div>
+        <div class="price">₦300,000<br><small>$199 USD equiv.</small></div>
+        
+        <ul class="features">
+            <li>1000+ tower batch processing</li>
+            <li>Live NOAA weather API</li>
+            <li>KML/Google Earth export</li>
+            <li>Custom IEC tower profiles</li>
+            <li>Priority email support</li>
+        </ul>
+        
+        <input type="email" class="email" id="buyerEmail" placeholder="your@email.com" required>
+        <button onclick="buyPro()">💳 Pay Securely Now</button>
+        
+        <p style="text-align: center; margin-top: 20px; font-size: 0.9em;">
+            100% Secure | Instant License | Nigerian Banks + Global Cards
+        </p>
+    </div>
+
     <script>
-    const stripe = Stripe('pk_test_...'); // Your Stripe key
-    document.getElementById('buy-btn').addEventListener('click', async () => {
-        const {error, session} = await stripe.redirectToCheckout({
-            lineItems: [{price: 'price_...', quantity: 1}],
-            mode: 'payment',
-            successUrl: 'https://github.com/SignalysTech/Climate5GProp?license=PRO',
-            cancelUrl: window.location.href
+    function buyPro() {
+        let email = document.getElementById('buyerEmail').value;
+        if (!email) { alert('Please add email'); return; }
+        
+        FlutterwaveCheckout({
+            public_key: "FLWPUBK_TEST-your-public-key-here",  // ← REPLACE THIS
+            tx_ref: "climate5gpro_" + Date.now(),
+            amount: 300000,  // NGN (kobo)
+            currency: "NGN",
+            payment_options: "card, mobilemoney, ussd",
+            customer: {
+                email: email,
+                name: "Climate5GProp Buyer"
+            },
+            customizations: {
+                title: "Climate5GProp Pro License",
+                description: "5G Propagation Tool - Enterprise Edition"
+            },
+            callback: function (data) {
+                if (data.status == "successful") {
+                    alert("🎉 Success! License key emailed.");
+                    window.location.href = "https://ejifolabi.github.io/Climate5GProp/?paid=" + data.tx_ref;
+                }
+            },
+            onclose: function() {
+                // Handle close
+            }
         });
-    });
+    }
     </script>
 </body>
 </html>
