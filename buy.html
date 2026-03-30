@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Buy Climate5GProp Pro - $199</title>
+    <script src="https://js.stripe.com/v3/"></script>
+    <style>body{font-family:Arial; max-width:600px; margin:50px auto;}</style>
+</head>
+<body>
+    <h1>🚀 Climate5GProp Pro License</h1>
+    <p><strong>$199</strong> - Unlimited sites + API + Support</p>
+    <ul>
+        <li>Live NOAA forecasts</li>
+        <li>RCP8.5 climate grids</li>
+        <li>Batch 1000+ towers</li>
+        <li>Web dashboard</li>
+    </ul>
+    <form id="checkout">
+        <button id="buy-btn">Purchase → Instant License</button>
+    </form>
+    
+    <script>
+    const stripe = Stripe('pk_test_...'); // Your Stripe key
+    document.getElementById('buy-btn').addEventListener('click', async () => {
+        const {error, session} = await stripe.redirectToCheckout({
+            lineItems: [{price: 'price_...', quantity: 1}],
+            mode: 'payment',
+            successUrl: 'https://github.com/SignalysTech/Climate5GProp?license=PRO',
+            cancelUrl: window.location.href
+        });
+    });
+    </script>
+</body>
+</html>
