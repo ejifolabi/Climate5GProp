@@ -78,5 +78,5 @@ st.markdown("""
 ✅ Live NOAA API  
 ✅ KML/Google Earth export  
 ✅ Custom IEC profiles  
-[Buy Pro License](buy.html)
+[Buy Pro License](https://ejifolabi.github.io/Climate5GProp/)
 """)
