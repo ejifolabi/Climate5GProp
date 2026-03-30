@@ -6,7 +6,7 @@ st.set_page_config(layout="wide")
 
 st.markdown("""
 # 🌪️ Climate5GProp Pro - Live Demo
-**SignalysTech | 5G Propagation Tool** | [Pro $199](buy.html)
+**SignalysTech | 5G Propagation Tool** | [Pro $199](https://ejifolabi.github.io/Climate5GProp/)
 """)
 
 # Inputs
